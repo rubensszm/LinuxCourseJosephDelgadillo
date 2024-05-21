@@ -1,3 +1,7 @@
+cd /etc
+    # qualquer diretório que inicia em / está na raiz da partição
+cd ~/Documentos
+    # qualquer diretório que inicia em ~/ está na pasta do usuário atual
 alias l 
     # imprime o comando que o alias substitui
 l 
@@ -33,3 +37,19 @@ sudo chwon -R rubenssm:rubenssm .
 # CUIDADO: é importante saber que alguns arquivos DEVEM ter o root como dono
 sudo chmod -R 777
     # altera as permissões de todos os arquivos e diretórios a partir do atual recursivamente
+touch file.txt
+    # atualiza os horários de modificação e acesso de cada ARQUIVO para o horário atual. 
+    # CRIA O ARQUIVO se não existir
+rm dir/file.txt
+    # exclui o arquivo
+rm dir/*.txt
+    # exclui todos os .txt
+rm -rf dir
+    # exclui o diretório e todos os arquivos dentro
+find . -type f -iname "*.txt"
+    # busca, no diretório atual (.), todos os arquivos (-type f), 
+    # cujo nome termine em (*.txt), sem case sensitive (iname)
+find /etc -type f -iname "*.conf"
+    # busca os .conf na pasta /etc
+find /etc -type d -perm 0644
+    # busca os diretórios com permissão 644 na pasta /etc
