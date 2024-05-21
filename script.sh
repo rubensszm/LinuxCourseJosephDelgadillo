@@ -51,5 +51,12 @@ find . -type f -iname "*.txt"
     # cujo nome termine em (*.txt), sem case sensitive (iname)
 find /etc -type f -iname "*.conf"
     # busca os .conf na pasta /etc
+find /etc -type f -not -iname "*.conf"
+    # busca qualquer arquivo que não seja .conf na pasta /etc
 find /etc -type d -perm 0644
     # busca os diretórios com permissão 644 na pasta /etc
+find / -type f -size -1M || find / -size +100k || find / -size 100k 
+    # busca arquivos menores que 1MB, maiores que 100kB ou de 100kB a partir do diretório raiz
+find . -maxdepth 1 -type f -iname "*.txt"
+    # busca, APENAS NO DIRETÓRIO (sem ser recursivamente),
+    # os arquivos .txt sem case sensitive
