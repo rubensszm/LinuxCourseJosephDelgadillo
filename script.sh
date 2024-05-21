@@ -18,3 +18,18 @@ su rubenssm
     # muda para o usuário rubenssm
 dnf upgrade
     # atualiza os pacotes
+ls -l
+    # lista os arquivos de forma longa, com detalhes. Exibe as permissões, dono, grupo
+sudo chown user:group
+    # altera o usuário e o grupo proprietários do arquivo
+sudo chmod 761
+    # altera as permissões do dono para rwx, do grupo para rw, e dos outros para x
+sudo mkdir dir
+    # cria um diretório de dono root, grupo root, e permissões 755
+sudo nano file.txt
+    # cria um arquivo de dono, grupo root, e permissões 644
+sudo chwon -R rubenssm:rubenssm .
+    # altera o proprietário e grupo de todos os arquivos e diretórios a partir do atual recursivamente
+# CUIDADO: é importante saber que alguns arquivos DEVEM ter o root como dono
+sudo chmod -R 777
+    # altera as permissões de todos os arquivos e diretórios a partir do atual recursivamente
