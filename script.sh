@@ -79,3 +79,47 @@ find / -type f -iname "*.php" -exec grep -i -n "function" {} + | tee outfile.txt
     # que contenham o texto "function"
     # e vai imprimir tanto na saída da padrão quanto no arquivo outfile.txt
     # The tee command is named after plumbing terminology for a T-shaped pipe splitter
+top
+#    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                               
+#2718238 rubenssm  20   0   33,3g 571472 335108 S   6,0   2,0 102:09.17 chrome
+    # table of processes
+        # PID é o identificador do processo
+        # USER é o usuário dono do processo
+        # PR é a prioridade do processo, varia de 0 a 139
+            # 0 a 139: No sistema Linux, a prioridade de um processo pode variar de 0 a 139.
+            # 0 a 99: São prioridades em tempo real.
+            # 100 a 139: São prioridades de usuário (ou "nice" priorities).
+            # O valor de PR é calculado como PR = 20 + NI
+        # NI niceness value
+            # O valor de "nice" varia de -20 a 19.
+            # -20: Representa a maior prioridade
+            # 19: Representa a menor prioridade
+        # VIRT (Virtual Memory Size) indica a quantidade total de memória virtual utilizada pelo processo.
+            # Inclui toda a memória que o processo pode acessar, incluindo memória mapeada de arquivos, bibliotecas compartilhadas e memória swap.
+            # Exemplo: Se um processo aloca 1GB de memória, mapeia um arquivo de 2GB e carrega uma biblioteca compartilhada de 1GB, VIRT seria aproximadamente 4GB.
+        # RES (Resident Set Size) indica a quantidade de memória residente (física) utilizada pelo processo.
+            # Inclui a memória física que o processo está usando atualmente (excluindo a memória que foi trocada para o disco).
+            # Exemplo: Se o mesmo processo está utilizando efetivamente 500MB de memória física, RES seria 500MB.
+        # SHR (Shared Memory Size) indica a quantidade de memória compartilhada que o processo está usando.
+            # Inclui memória compartilhada entre processos, como bibliotecas compartilhadas.
+            # Exemplo: Se o processo está usando 200MB de bibliotecas compartilhadas, SHR seria 200MB.
+        # S (Process Status) indica o estado atual do processo.
+            # Possíveis Valores:
+                # D: Ininterruptível (esperando por I/O)
+                # R: Em execução (ou executável)
+                # S: Dormindo (em espera)
+                # T: Parado (parado por sinal de controle de trabalho)
+                # Z: Zumbi (processo terminado, mas ainda na tabela de processos)
+        # TIME indica há quanto tempo o processo está aberto
+htop
+    # human table of processes
+ps aux | grep chrome
+    # busca os processos cujo nome seja chrome
+pgrep chrome
+    # retorna os IDs dos processos do chrome em ordem cronológica
+kill -9 <pid> <pid2>
+    # mata as instâncias dos processos de PID especificados
+killall chrome
+    # mata todas as instâncias do chrome
+
+    
