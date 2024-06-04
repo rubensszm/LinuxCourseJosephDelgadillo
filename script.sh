@@ -79,6 +79,9 @@ find / -type f -iname "*.php" -exec grep -i -n "function" {} + | tee outfile.txt
     # que contenham o texto "function"
     # e vai imprimir tanto na saída da padrão quanto no arquivo outfile.txt
     # The tee command is named after plumbing terminology for a T-shaped pipe splitter
+
+# Processos
+
 top
 #    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                               
 #2718238 rubenssm  20   0   33,3g 571472 335108 S   6,0   2,0 102:09.17 chrome
@@ -122,4 +125,74 @@ kill -9 <pid> <pid2>
 killall chrome
     # mata todas as instâncias do chrome
 
-    
+# Serviços
+
+sudo service docker start
+    # inicia o serviço especificado
+sudo service docker stop
+    # para o serviço especificado
+sudo service docker restart
+    # reinicia o serviço especificado. Útil para alterações nas configurações do serviço.
+
+# Hoje em dia, contudo, não se usa mais o comando service, mas sim o comando systemctl (system control)
+
+sudo systemctl start docker
+sudo systemctl stop docker
+sudo systemctl restart docker
+    # faz a mesma coisa que o comando service, mas é o padrão mais atual
+sudo systemctl enable docker
+sudo systemctl disable docker
+    # habilita ou desabilita um serviço
+sudo systemctl status docker
+    # verifica o status atual do serviço 
+sudo system list-units
+    # lista os serviços em execução
+sudo system list-units | grep docker
+    # lista os serviços em execução que contém docker no nome
+
+
+# Agendamento de tarefas
+
+# m h dom mon dow command
+    # m => minutes => 0 to 59
+    # h => hours => 0 to 23
+    # dom => day of month => 1 to 31
+    # mon => month => 1 to 12
+    # dow => day of week => 0 to 6
+crontab -e
+    # abre o arquivo do crontab para o usuário atual
+0 12 * * * date >> ~/Downloads/date.txt
+    # todo dia ao meio dia ele vai imprimir a data no arquivo especificado
+0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+    # toda segunda feira às 5h00, ele vai fazer um backup da pasta home e salvar em /var/backups
+    # tar -c (cria backup) -z (formato gzip) -f arquivo_alvo.tgz 
+sudo crontab -e
+    # abre o crontab do super usuário
+0 7 * * 1 dnf upgrade -y
+    # executa o dnf upgrade toda segunda feira às 07h00 atualizando os pacotes
+    # -y (concordar com tudo)
+
+# Git
+
+sudo dnf -y install git git-extras
+    # instala o git e o git-extras
+git init
+    # inicializa um repositório do git, criando a pasta .git com os objetos de um repositório
+git remote add origin http://<token>@github.com/<usuario>/<repositorio>
+    # faz o repositório local rastrear o repositório remoto
+git config --global user.name "Rubens"
+git config --global user.email rubensszm@gmail.com
+    # define as variáveis de ambiente para identificar o usuário
+git pull origin master
+    # obtém os dados da branch master no repositório remoto origin
+git branch --set-upstream-to=origin/master
+    # faz com que a branch master local rastreie a branch master do repositório remoto origin
+
+
+
+
+
+
+
+
+
