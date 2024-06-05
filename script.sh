@@ -187,10 +187,63 @@ git pull origin master
     # obtém os dados da branch master no repositório remoto origin
 git branch --set-upstream-to=origin/master
     # faz com que a branch master local rastreie a branch master do repositório remoto origin
+git add --all (-A)
+    # adiciona todos os arquivos ao index
+git commit -m "realiza o primeiro commit"
+    # cria um novo commit com o patch das alterações do index, e atualiza o HEAD para o hash do novo commit
+git push origin master
+    # realiza o push dos novos commits locais ao repositório remoto origin na branch master
+git rm -r .idea
+    # para de rastrear o diretório .idea recursivamente e remove o diretório fisicamente também
+git add -A; git commit; git push
+    # atualiza o repositório remoto sem a pasta .idea
+git-ignore node_modules/*
+    # adiciona o diretório e tudo dentro dele ao .gitignore
+nano .gitignore
+    # consta node_modules/*
+git add -A; git commit; git push
+    #
+git fetch
+    # busca as alterações do repositório remoto sem trazê-las
+git merge
+    # traz as alterações do repositório remoto e tentar a mesclagem com as locais
+    # houve conflito em um arquivo main.py
 
+# !/usr/bin/python3
+# 
+# def main(msg)
+# <<<<<<< HEAD
+#      // Adding the second comment
+# =======
+#      // Print a message
+#      print(msg)
+#
+# main ("hello, people")
 
+nano main.py
+    # corrige ele para 
 
+# !/usr/bin/python3
+# 
+# def main(msg)
+#      // Adding the second comment
+#      // Print a message
+#      print(msg)
+#
+# main ("hello, people")
 
+git add -A; git commit; git push
+    # submete a correção dos conflitos
+git checkout v01
+    # cria uma branch chamada v01 sendo uma cópia exata do commit atual
+git checkout master
+    # troca para a branch master
+git switch master
+    # troca para a branch master. É comando recomendado atualmente em vez do git switch
+git merge v01
+    # realiza o merge (mesclagem) da branch v01 na branch atual
+git push origin master
+    # 
 
 
 
